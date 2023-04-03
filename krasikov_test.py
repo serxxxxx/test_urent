@@ -2,17 +2,17 @@ import requests
 import json
 
 def test_api():
-    # отправляем GET запрос для получения логина и пароля
+    # РѕС‚РїСЂР°РІР»СЏРµРј GET Р·Р°РїСЂРѕСЃ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ Р»РѕРіРёРЅР° Рё РїР°СЂРѕР»СЏ
     response = requests.get("https://test.ru/api/connect")
-    # парсим ответ в формате JSON
+    # РїР°СЂСЃРёРј РѕС‚РІРµС‚ РІ С„РѕСЂРјР°С‚Рµ JSON
     data = json.loads(response.text)
-    # получаем логин и пароль
+    # РїРѕР»СѓС‡Р°РµРј Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ
     login = data['eintires']['login']
     password = data['eintires']['password']
-    # создаем тело POST запроса в формате JSON
+    # СЃРѕР·РґР°РµРј С‚РµР»Рѕ POST Р·Р°РїСЂРѕСЃР° РІ С„РѕСЂРјР°С‚Рµ JSON
     payload = {'login': login, 'password': password}
-    # отправляем POST запрос с телом JSON
+    # РѕС‚РїСЂР°РІР»СЏРµРј POST Р·Р°РїСЂРѕСЃ СЃ С‚РµР»РѕРј JSON
     response = requests.post("https://test.ru/api/v4/token", json=payload)
-    # проверяем код ответа и выводим сообщение при неудаче
+    # РїСЂРѕРІРµСЂСЏРµРј РєРѕРґ РѕС‚РІРµС‚Р° Рё РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ РїСЂРё РЅРµСѓРґР°С‡Рµ
     if response.status_code != 200:
-        print("Авторизация не удалась")
+        print("РђРІС‚РѕСЂРёР·Р°С†РёСЏ РЅРµ СѓРґР°Р»Р°СЃСЊ")
